@@ -16,6 +16,41 @@
  *     { abbreviation : 'NbW',   azimuth : 348.75 }
  *  ]
  */
+
+function createCompassPoints() {
+    function rec(start_str, finish_str, start_pos, finish_pos) {
+        let medium_position = (finish_pos + start_pos) / 2;
+        if (!Number.isInteger(medium_position))
+            return;
+        let medium_str = start_str + finish_str;
+        if (medium_str.length > 3) {
+            let main_i;
+            if (finish_pos - start_pos > 0) {
+                main_i = Math.ceil(medium_position / 8);
+            } else {
+                main_i = Math.trunc(medium_position / 8)
+            }
+            main_i %= 4;
+            medium_str = start_str + 'b' + sides[main_i];
+        }
+        if (!res[medium_position]) {
+            res[medium_position] = medium_str;
+        }
+        rec(start_str, res[medium_position], start_pos, medium_position)
+        rec(finish_str, res[medium_position], finish_pos, medium_position)
+    } 
+    var sides = ['N', 'E', 'S', 'W']
+    let res = new Array(33);
+    sides.forEach((elem, i) => res[i * 8] = elem);
+    rec('N', 'N', 0, 32);
+    return res.map((abbr, i) => {
+        return {
+            abbreviation: abbr,
+            azimuth: 11.25 * i
+        }
+    });   
+}
+
 function createCompassPoints() {
     throw new Error('Not implemented');
     var sides = ['N','E','S','W'];  // use array of cardinal directions only!
