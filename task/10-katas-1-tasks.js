@@ -51,12 +51,6 @@ function createCompassPoints() {
     });   
 }
 
-function createCompassPoints() {
-    throw new Error('Not implemented');
-    var sides = ['N','E','S','W'];  // use array of cardinal directions only!
-}
-
-
 /**
  * Expand the braces of the specified string.
  * See https://en.wikipedia.org/wiki/Bash_(Unix_shell)#Brace_expansion
