@@ -96,8 +96,8 @@ function getSumBetweenNumbers(n1, n2) {
  *   10,1,1   =>  false
  *   10,10,10 =>  true
  */
-function isTriangle(a,b,c) {
-    return  a + b > c && a + c > b && b + c > a;
+function isTriangle(a, b, c) {
+    return a + b > c && a + c > b && b + c > a;
 }
 
 
@@ -134,6 +134,21 @@ function isTriangle(a,b,c) {
  *  
  */
 function doRectanglesOverlap(rect1, rect2) {
+    // const A = {};
+    // A.x1 = rect1.left;
+    // A.y1 = rect1.top - rect1.height;
+    // A.x2 = rect1.top + rect1.width;
+    // A.y2 = rect1.top;
+    // const B = {};
+    // B.x1 = rect1.left;
+    // B.y1 = rect1.top - rect1.height;
+    // B.x2 = rect1.top + rect1.width;
+    // B.y2 = rect1.top;
+    // let aLeftOfB = A.x2 < B.x1;
+    // let aRightOfB = A.x1 > B.x2;
+    // let aAboveB = A.y1 > B.y2;
+    // let aBelowB = A.y2 < B.y1;
+    // return !(aLeftOfB || aRightOfB || aAboveB || aBelowB);
     throw new Error('Not implemented');
 }
 
@@ -217,7 +232,22 @@ function findFirstSingleChar(str) {
  *
  */
 function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
-    throw new Error('Not implemented');
+    const bracket = (bool, index) => {
+        if (bool) {
+            if (index == 1) {
+                return "[";
+            }
+            return "]";
+        } else {
+            if (index == 1) {
+                return "(";
+            }
+            return ")";
+        }
+    }
+    let x = a > b ? b : a;
+    let y = a > b ? a : b;
+    return bracket(isStartIncluded, 1) + x + ", " + y + bracket(isEndIncluded, 2);
 }
 
 
@@ -365,6 +395,14 @@ function isBracketsBalanced(str) {
  *
  */
 function timespanToHumanString(startDate, endDate) {
+    // let between = endDate - startDate;
+    // let D = Math.floor(between / 1000 / 60 / 60 / 24);
+    // let HH = Math.floor(between / 1000 / 60 / 60) - D * 24;
+    // let mm = Math.floor(between / 1000 / 60) - (HH + D * 24) * 60;
+    // let ss = Math.floor(between / 1000) - ((HH + D * 24) * 60 + mm) * 60;
+    // if (D >= 546) {
+    //     return "2 years ago ... 20 years ago"
+    // }
     throw new Error('Not implemented');
 }
 
@@ -389,7 +427,7 @@ function timespanToHumanString(startDate, endDate) {
  *    365, 10 => '365'
  */
 function toNaryString(num, n) {
-    throw new Error('Not implemented');
+    return Number(num).toString(n);
 }
 
 
@@ -429,6 +467,15 @@ function getCommonDirectoryPath(pathes) {
  *
  */
 function getMatrixProduct(m1, m2) {
+    // let res = []
+    // for (let i = 0; i < m1.length; i++) {
+    //     let cel = [];
+    //     for (let j = 0; j < m2.length; j++) {
+    //         cel.push ()
+    //     }
+
+        
+    // }
     throw new Error('Not implemented');
 }
 
@@ -476,15 +523,15 @@ module.exports = {
     doRectanglesOverlap: doRectanglesOverlap,
     isInsideCircle: isInsideCircle,
     findFirstSingleChar: findFirstSingleChar,
-    getIntervalString : getIntervalString,
+    getIntervalString: getIntervalString,
     reverseString: reverseString,
     reverseInteger: reverseInteger,
     isCreditCardNumber: isCreditCardNumber,
     getDigitalRoot: getDigitalRoot,
     isBracketsBalanced: isBracketsBalanced,
-    timespanToHumanString : timespanToHumanString,
+    timespanToHumanString: timespanToHumanString,
     toNaryString: toNaryString,
     getCommonDirectoryPath: getCommonDirectoryPath,
     getMatrixProduct: getMatrixProduct,
-    evaluateTicTacToePosition : evaluateTicTacToePosition
+    evaluateTicTacToePosition: evaluateTicTacToePosition
 };

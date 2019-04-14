@@ -81,10 +81,34 @@ function* getFibonacciSequence() {
  *  depthTraversalTree(node1) => node1, node2, node3, node4, node5, node6, node7, node8
  *
  */
-function* depthTraversalTree(root) {
-    throw new Error('Not implemented');
-}
 
+function* depthTraversalTree(root) {
+    
+    let arrRoot = [];
+    let lastChild = '';
+    let i;
+
+    arrRoot.push(root);
+    yield root;
+    while (root) {
+        if (root.children) {
+            i = root.children.indexOf(lastChild);
+            root = root.children[i + 1];
+            if (root) {
+                lastChild = '';
+                arrRoot.push(root);
+                yield root;
+
+            } else {
+                lastChild = arrRoot.pop();
+                root = arrRoot[arrRoot.length - 1] || null;
+            }
+        } else {
+            lastChild = arrRoot.pop();
+            root = arrRoot[arrRoot.length - 1] || null;
+        }
+    }
+}
 
 /**
  * Traverses a tree using the breadth-first strategy
